@@ -1,0 +1,763 @@
+[
+    {
+        "id": "cbbe95c706f5b701",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "dd35e56f3163832e",
+        "type": "inject",
+        "z": "cbbe95c706f5b701",
+        "name": "CREATE",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 320,
+        "wires": [
+            [
+                "1c771a21de98ceae"
+            ]
+        ]
+    },
+    {
+        "id": "8d4ffd5b5a448826",
+        "type": "debug",
+        "z": "cbbe95c706f5b701",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 770,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "8ae5d7b232268058",
+        "type": "inject",
+        "z": "cbbe95c706f5b701",
+        "name": "INSERT",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 440,
+        "wires": [
+            [
+                "717cd578c5f79ff4"
+            ]
+        ]
+    },
+    {
+        "id": "717cd578c5f79ff4",
+        "type": "function",
+        "z": "cbbe95c706f5b701",
+        "name": "INSERT",
+        "func": "topic = \"INSERT INTO `test2`.`data` (`device`, `location`, `humidityi`, `tempf`) VALUES ('\";\ntopic = topic + msg.payload[1].device +\"', '\";\ntopic = topic + msg.payload[1].location + \"', '\";\ntopic = topic + msg.payload[0].humidityi + \"', '\";\ntopic = topic + msg.payload[0].tempf + \"');\";\n\nmsg.topic = topic;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 10,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 440,
+        "wires": [
+            [
+                "66f3201e2f7e508d"
+            ]
+        ]
+    },
+    {
+        "id": "315aca3b17fbe3db",
+        "type": "debug",
+        "z": "cbbe95c706f5b701",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 770,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "493579b1698bc227",
+        "type": "inject",
+        "z": "cbbe95c706f5b701",
+        "name": "DELETE ",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 500,
+        "wires": [
+            [
+                "d080d4f27a0c7714"
+            ]
+        ]
+    },
+    {
+        "id": "d2fb6d312f7dd46c",
+        "type": "debug",
+        "z": "cbbe95c706f5b701",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 770,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "5f75b2cda4a10b26",
+        "type": "inject",
+        "z": "cbbe95c706f5b701",
+        "name": "UPDATE",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 560,
+        "wires": [
+            [
+                "df7874fcac7173a9"
+            ]
+        ]
+    },
+    {
+        "id": "664a0f65a4aaf525",
+        "type": "debug",
+        "z": "cbbe95c706f5b701",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 770,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "a90a1c16ab736708",
+        "type": "inject",
+        "z": "cbbe95c706f5b701",
+        "name": "COUNT",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 230,
+        "y": 620,
+        "wires": [
+            [
+                "0688f8d48656868a"
+            ]
+        ]
+    },
+    {
+        "id": "f3a0fef7b870d8fe",
+        "type": "inject",
+        "z": "cbbe95c706f5b701",
+        "name": "SELECT",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 680,
+        "wires": [
+            [
+                "f11edfcb9392f838"
+            ]
+        ]
+    },
+    {
+        "id": "c489a5cd363e8bf1",
+        "type": "ui_template",
+        "z": "cbbe95c706f5b701",
+        "group": "eed4bf37.31aee",
+        "name": "",
+        "order": 2,
+        "width": "6",
+        "height": "7",
+        "format": "\n        \n<table style=\"width:100%\">\n  <tr>\n    <th>Index</th> \n    <th>Time</th>\n    <th>Room</th> \n    <th>ID</th>\n  </tr>\n  <tr ng-repeat=\"x in msg.payload | limitTo:10\">\n    <td><center>{{$index}}</center></td>\n    <td><center>{{msg.payload[$index].date}}</center></td>\n    <td><center>{{msg.payload[$index].room}}</center></td> \n    <td><center>{{msg.payload[$index].id}}</center></td>\n  </tr>\n</table>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "x": 600,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c2687e93cdb40ea2",
+        "type": "comment",
+        "z": "cbbe95c706f5b701",
+        "name": "MariaDB",
+        "info": "https://mariadb.org/\n\n//SELECT COUNT(*) FROM RANDOMNUM\n//SELECT COUNT(*) FROM `test`\n// UPDATE RANDOMNUM SET BOOL = 1 WHERE VALUE > 20 AND BOOL = 0\n\n//UPDATE `test`.`access` SET `room`='602' LIMIT 1;\n\n//DELETE FROM RANDOMNUM WHERE TIMESTAMP <= strftime('%s','now', '-30 seconds')*1000\n\n//DELETE FROM `test`.`access` WHERE  `no`=3 AND `time`='2021-06-07 17:37:03' AND `room`=503 AND `id`=1893 LIMIT 1;\n",
+        "x": 200,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "1c771a21de98ceae",
+        "type": "function",
+        "z": "cbbe95c706f5b701",
+        "name": "TABLE",
+        "func": "topic = \"CREATE TABLE `access` ( \";\ntopic = topic + \"`no` INT NULL AUTO_INCREMENT,\";\ntopic = topic + \"`date` TIMESTAMP NOT NULL,\";\ntopic = topic + \"`device` VARCHAR(255) NULL,\";\ntopic = topic + \"`location` VARCHAR(2) NULL,\";\ntopic = topic + \"`humidityi` INT NULL,\";\ntopic = topic + \"`tempf` FLOAT NULL,\";\ntopic = topic + \"INDEX `no` (`no`)) COLLATE='latin1_swedish_ci';\";\nmsg.topic = topic;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 16,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 320,
+        "wires": [
+            [
+                "86d671f4bb60b15d"
+            ]
+        ]
+    },
+    {
+        "id": "6a65521d7d21079e",
+        "type": "inject",
+        "z": "cbbe95c706f5b701",
+        "name": "CREATE",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 220,
+        "wires": [
+            [
+                "bbe9b8e699df5333"
+            ]
+        ]
+    },
+    {
+        "id": "3e5634409530bf89",
+        "type": "debug",
+        "z": "cbbe95c706f5b701",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 770,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "bbe9b8e699df5333",
+        "type": "function",
+        "z": "cbbe95c706f5b701",
+        "name": "DATABASE",
+        "func": "var newMsg = {\n\"topic\" : \"CREATE DATABASE `test2`;\"\n}\nreturn newMsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 220,
+        "wires": [
+            [
+                "c9320326cf66459a"
+            ]
+        ]
+    },
+    {
+        "id": "d080d4f27a0c7714",
+        "type": "function",
+        "z": "cbbe95c706f5b701",
+        "name": "DELETE ",
+        "func": "var newMsg = {\n\"topic\" : \"DELETE FROM `test2`.`access` ORDER BY no DESC LIMIT 1\"\n}\nreturn newMsg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 500,
+        "wires": [
+            [
+                "823c654dd4f445bd"
+            ]
+        ]
+    },
+    {
+        "id": "df7874fcac7173a9",
+        "type": "function",
+        "z": "cbbe95c706f5b701",
+        "name": "UPDATE",
+        "func": "var newMsg = {\n\"topic\" : \"UPDATE `test2`.`access` SET `room`='602' ORDER BY date DESC LIMIT 1;\"\n}\nreturn newMsg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 560,
+        "wires": [
+            [
+                "4eae2ebfdb2ca804"
+            ]
+        ]
+    },
+    {
+        "id": "0688f8d48656868a",
+        "type": "function",
+        "z": "cbbe95c706f5b701",
+        "name": "COUNT",
+        "func": "var newMsg = {\n\"topic\" : \"SELECT COUNT(*) FROM `test2`.`access`;\"\n}\nreturn newMsg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 620,
+        "wires": [
+            [
+                "ee542225de06f9fb"
+            ]
+        ]
+    },
+    {
+        "id": "6b9670d6d3c6ebe0",
+        "type": "debug",
+        "z": "cbbe95c706f5b701",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload[0]",
+        "targetType": "msg",
+        "x": 780,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "f11edfcb9392f838",
+        "type": "function",
+        "z": "cbbe95c706f5b701",
+        "name": "SELECT",
+        "func": "var newMsg = {\n\"topic\" : \"SELECT * FROM `test2`.`access` ORDER BY date DESC LIMIT 20;\"\n}\nreturn newMsg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 680,
+        "wires": [
+            [
+                "d58465af872f0501"
+            ]
+        ]
+    },
+    {
+        "id": "edbd684ab5da606b",
+        "type": "function",
+        "z": "cbbe95c706f5b701",
+        "name": "Date to TS",
+        "func": "\nfor(var i = 0; i < msg.payload.length; i++){\n    var dd = new Date(parseInt((new Date(msg.payload[i].date).getTime()).toFixed(0)));\n    msg.payload[i].date = dd.toLocaleTimeString('it-IT');\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 740,
+        "wires": [
+            [
+                "c489a5cd363e8bf1"
+            ]
+        ]
+    },
+    {
+        "id": "66f3201e2f7e508d",
+        "type": "mysql",
+        "z": "cbbe95c706f5b701",
+        "mydb": "2236dfd1.c909e",
+        "name": "",
+        "x": 600,
+        "y": 440,
+        "wires": [
+            [
+                "315aca3b17fbe3db"
+            ]
+        ]
+    },
+    {
+        "id": "86d671f4bb60b15d",
+        "type": "mysql",
+        "z": "cbbe95c706f5b701",
+        "mydb": "a3187512f5b16f6a",
+        "name": "",
+        "x": 590,
+        "y": 320,
+        "wires": [
+            [
+                "8d4ffd5b5a448826"
+            ]
+        ]
+    },
+    {
+        "id": "c9320326cf66459a",
+        "type": "mysql",
+        "z": "cbbe95c706f5b701",
+        "mydb": "a3187512f5b16f6a",
+        "name": "",
+        "x": 555,
+        "y": 220,
+        "wires": [
+            [
+                "3e5634409530bf89"
+            ]
+        ],
+        "l": false
+    },
+    {
+        "id": "823c654dd4f445bd",
+        "type": "mysql",
+        "z": "cbbe95c706f5b701",
+        "mydb": "2236dfd1.c909e",
+        "name": "",
+        "x": 600,
+        "y": 500,
+        "wires": [
+            [
+                "d2fb6d312f7dd46c"
+            ]
+        ]
+    },
+    {
+        "id": "4eae2ebfdb2ca804",
+        "type": "mysql",
+        "z": "cbbe95c706f5b701",
+        "mydb": "2236dfd1.c909e",
+        "name": "",
+        "x": 600,
+        "y": 560,
+        "wires": [
+            [
+                "664a0f65a4aaf525"
+            ]
+        ]
+    },
+    {
+        "id": "ee542225de06f9fb",
+        "type": "mysql",
+        "z": "cbbe95c706f5b701",
+        "mydb": "2236dfd1.c909e",
+        "name": "",
+        "x": 600,
+        "y": 620,
+        "wires": [
+            [
+                "6b9670d6d3c6ebe0"
+            ]
+        ]
+    },
+    {
+        "id": "d58465af872f0501",
+        "type": "mysql",
+        "z": "cbbe95c706f5b701",
+        "mydb": "2236dfd1.c909e",
+        "name": "",
+        "x": 600,
+        "y": 680,
+        "wires": [
+            [
+                "104aa8cb470a36e1"
+            ]
+        ]
+    },
+    {
+        "id": "104aa8cb470a36e1",
+        "type": "link out",
+        "z": "cbbe95c706f5b701",
+        "name": "",
+        "links": [
+            "d5f68b78.692828",
+            "aa5641934d22605a",
+            "33c14cb5.0c0b14",
+            "8b2213ea.cbdaa"
+        ],
+        "x": 715,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "aa5641934d22605a",
+        "type": "link in",
+        "z": "cbbe95c706f5b701",
+        "name": "",
+        "links": [
+            "104aa8cb470a36e1"
+        ],
+        "x": 275,
+        "y": 740,
+        "wires": [
+            [
+                "edbd684ab5da606b"
+            ]
+        ]
+    },
+    {
+        "id": "627124dd430255b0",
+        "type": "mqtt in",
+        "z": "cbbe95c706f5b701",
+        "name": "",
+        "topic": "esp2nred/temp/#",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "126ea320118c22af",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "f1ba9e2fa1c2a5cb"
+            ]
+        ]
+    },
+    {
+        "id": "f1ba9e2fa1c2a5cb",
+        "type": "function",
+        "z": "cbbe95c706f5b701",
+        "name": "parse MQTT JSON str",
+        "func": "var pTopic  = msg.topic.split(\"/\");\n//var jsonObj   =JSON.parse(JSON.stringify(msg.payload));\n// parse converts JSON to js object\n// stringify converts js object to string\n// not sure why node red is now not requiring the parse\nvar jsonObj = msg.payload;\nvar fields = {};\nvar tags = {location:pTopic[2], device:pTopic[1]};\nfor(var item in jsonObj){\n    if (item.endsWith('f')) {\n        fields[item] = parseFloat(jsonObj[item]);\n    }\n    if (item.endsWith('i')) {\n        fields[item] = parseInt(jsonObj[item]);\n    }\n}\nmsg.payload = [\n    fields,\n    tags\n];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 160,
+        "wires": [
+            [
+                "844c805da5125c57",
+                "8d78db96076f2e3b"
+            ]
+        ]
+    },
+    {
+        "id": "844c805da5125c57",
+        "type": "debug",
+        "z": "cbbe95c706f5b701",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "8d78db96076f2e3b",
+        "type": "function",
+        "z": "cbbe95c706f5b701",
+        "name": "INSERT",
+        "func": "topic = \"INSERT INTO `esp2nred`.`data` (`device`, `location`, `humidityi`, `tempf`) VALUES ('\";\ntopic = topic + msg.payload[1].device +\"', '\";\ntopic = topic + msg.payload[1].location + \"', '\";\ntopic = topic + msg.payload[0].humidityi + \"', '\";\ntopic = topic + msg.payload[0].tempf + \"');\";\n\nmsg.topic = topic;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 10,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 160,
+        "wires": [
+            [
+                "31e886730ef1ef61"
+            ]
+        ]
+    },
+    {
+        "id": "3b226a52632279ff",
+        "type": "debug",
+        "z": "cbbe95c706f5b701",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 940,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "31e886730ef1ef61",
+        "type": "mysql",
+        "z": "cbbe95c706f5b701",
+        "mydb": "2236dfd1.c909e",
+        "name": "",
+        "x": 750,
+        "y": 160,
+        "wires": [
+            [
+                "3b226a52632279ff"
+            ]
+        ]
+    },
+    {
+        "id": "6c90ab78f010c050",
+        "type": "comment",
+        "z": "cbbe95c706f5b701",
+        "name": "note date_time is built-in to the mysql as TIMESTAMP when table is created",
+        "info": "note date time is built-in to the mysql as TIMESTAMP",
+        "x": 620,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "7580892e807623f5",
+        "type": "comment",
+        "z": "cbbe95c706f5b701",
+        "name": "update db.table in js function before running methods below",
+        "info": "",
+        "x": 390,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "eed4bf37.31aee",
+        "type": "ui_group",
+        "name": "[ Access Data of Class Room ]",
+        "tab": "6d23db44.1697d4",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "2236dfd1.c909e",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "esp2nred",
+        "tz": "",
+        "charset": ""
+    },
+    {
+        "id": "a3187512f5b16f6a",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "test2",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "126ea320118c22af",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "6d23db44.1697d4",
+        "type": "ui_tab",
+        "name": "Main Tab",
+        "icon": "dashboard",
+        "order": 1
+    }
+]
