@@ -74,9 +74,7 @@
         "x": 240,
         "y": 440,
         "wires": [
-            [
-                "717cd578c5f79ff4"
-            ]
+            []
         ]
     },
     {
@@ -206,6 +204,18 @@
         "type": "inject",
         "z": "cbbe95c706f5b701",
         "name": "SELECT",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
         "repeat": "1",
         "crontab": "",
         "once": false,
@@ -228,13 +238,14 @@
         "group": "eed4bf37.31aee",
         "name": "",
         "order": 2,
-        "width": "6",
-        "height": "7",
-        "format": "\n        \n<table style=\"width:100%\">\n  <tr>\n    <th>Index</th> \n    <th>Time</th>\n    <th>Room</th> \n    <th>ID</th>\n  </tr>\n  <tr ng-repeat=\"x in msg.payload | limitTo:10\">\n    <td><center>{{$index}}</center></td>\n    <td><center>{{msg.payload[$index].date}}</center></td>\n    <td><center>{{msg.payload[$index].room}}</center></td> \n    <td><center>{{msg.payload[$index].id}}</center></td>\n  </tr>\n</table>\n",
+        "width": "10",
+        "height": "13",
+        "format": "<table style=\"width:100%\">\n  <tr>\n    <th>Index</th> \n    <th>Time</th>\n    <th>Device</th>\n    <th>Location</th> \n    <th>Humidity</th>\n    <th>Temp</th>\n  </tr>\n  <tr ng-repeat=\"x in msg.payload | limitTo:15\">\n    <td><center>{{$index}}</center></td>\n    <td><center>{{msg.payload[$index].date}}</center></td>\n    <td><center>{{msg.payload[$index].device}}</center></td>\n    <td><center>{{msg.payload[$index].location}}</center></td> \n    <td><center>{{msg.payload[$index].humidityi}}</center></td>\n    <td><center>{{msg.payload[$index].tempf}}</center></td>\n  </tr>\n</table>\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": false,
         "templateScope": "local",
+        "className": "",
         "x": 600,
         "y": 740,
         "wires": [
@@ -256,7 +267,7 @@
         "type": "function",
         "z": "cbbe95c706f5b701",
         "name": "TABLE",
-        "func": "topic = \"CREATE TABLE `access` ( \";\ntopic = topic + \"`no` INT NULL AUTO_INCREMENT,\";\ntopic = topic + \"`date` TIMESTAMP NOT NULL,\";\ntopic = topic + \"`device` VARCHAR(255) NULL,\";\ntopic = topic + \"`location` VARCHAR(2) NULL,\";\ntopic = topic + \"`humidityi` INT NULL,\";\ntopic = topic + \"`tempf` FLOAT NULL,\";\ntopic = topic + \"INDEX `no` (`no`)) COLLATE='latin1_swedish_ci';\";\nmsg.topic = topic;\n\nreturn msg;",
+        "func": "topic = \"CREATE TABLE `data` ( \";\ntopic = topic + \"`no` INT NULL AUTO_INCREMENT,\";\ntopic = topic + \"`date` TIMESTAMP NOT NULL,\";\ntopic = topic + \"`device` VARCHAR(255) NULL,\";\ntopic = topic + \"`location` VARCHAR(2) NULL,\";\ntopic = topic + \"`humidityi` INT NULL,\";\ntopic = topic + \"`tempf` FLOAT NULL,\";\ntopic = topic + \"INDEX `no` (`no`)) COLLATE='latin1_swedish_ci';\";\nmsg.topic = topic;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 16,
         "initialize": "",
@@ -409,7 +420,7 @@
         "type": "function",
         "z": "cbbe95c706f5b701",
         "name": "SELECT",
-        "func": "var newMsg = {\n\"topic\" : \"SELECT * FROM `test2`.`access` ORDER BY date DESC LIMIT 20;\"\n}\nreturn newMsg;\n",
+        "func": "var newMsg = {\n\"topic\" : \"SELECT * FROM `esp2nred`.`data` ORDER BY date DESC LIMIT 20;\"\n}\nreturn newMsg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -446,9 +457,9 @@
         "id": "66f3201e2f7e508d",
         "type": "mysql",
         "z": "cbbe95c706f5b701",
-        "mydb": "2236dfd1.c909e",
+        "mydb": "a3187512f5b16f6a",
         "name": "",
-        "x": 600,
+        "x": 590,
         "y": 440,
         "wires": [
             [
@@ -489,9 +500,9 @@
         "id": "823c654dd4f445bd",
         "type": "mysql",
         "z": "cbbe95c706f5b701",
-        "mydb": "2236dfd1.c909e",
+        "mydb": "a3187512f5b16f6a",
         "name": "",
-        "x": 600,
+        "x": 590,
         "y": 500,
         "wires": [
             [
@@ -503,9 +514,9 @@
         "id": "4eae2ebfdb2ca804",
         "type": "mysql",
         "z": "cbbe95c706f5b701",
-        "mydb": "2236dfd1.c909e",
+        "mydb": "a3187512f5b16f6a",
         "name": "",
-        "x": 600,
+        "x": 590,
         "y": 560,
         "wires": [
             [
@@ -517,9 +528,9 @@
         "id": "ee542225de06f9fb",
         "type": "mysql",
         "z": "cbbe95c706f5b701",
-        "mydb": "2236dfd1.c909e",
+        "mydb": "a3187512f5b16f6a",
         "name": "",
-        "x": 600,
+        "x": 590,
         "y": 620,
         "wires": [
             [
@@ -589,7 +600,8 @@
         "y": 160,
         "wires": [
             [
-                "f1ba9e2fa1c2a5cb"
+                "f1ba9e2fa1c2a5cb",
+                "717cd578c5f79ff4"
             ]
         ]
     },
@@ -699,22 +711,13 @@
     {
         "id": "eed4bf37.31aee",
         "type": "ui_group",
-        "name": "[ Access Data of Class Room ]",
+        "name": "[ Home Temp DB ]",
         "tab": "6d23db44.1697d4",
         "order": 1,
         "disp": true,
-        "width": "6",
-        "collapse": false
-    },
-    {
-        "id": "2236dfd1.c909e",
-        "type": "MySQLdatabase",
-        "name": "",
-        "host": "127.0.0.1",
-        "port": "3306",
-        "db": "esp2nred",
-        "tz": "",
-        "charset": ""
+        "width": "10",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "a3187512f5b16f6a",
@@ -725,6 +728,16 @@
         "db": "test2",
         "tz": "",
         "charset": "UTF8"
+    },
+    {
+        "id": "2236dfd1.c909e",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "esp2nred",
+        "tz": "",
+        "charset": ""
     },
     {
         "id": "126ea320118c22af",
